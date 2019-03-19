@@ -12,3 +12,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.login-form{
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form *{
+  color: #fff;
+}
+.login-form form{
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-form form > *{
+  margin: 15px 0px;
+}
+.login-form input{
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+.login-form input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  background-color: transparent;
+}
+.login-form button{
+  background-color: transparent;
+  border: 1px solid #fff;
+  padding: 3px 10px;
+}
+
+.login-form .logo{
+  height: 100px;
+  margin: 0 !important;
+}
+.login-form .logo img{
+  height: 100%;
+}
+.login-form .logo-title{
+  width: 100%;
+  border-bottom: 4px solid #fff;
+  margin: 0 !important;
+}
+.login-form .logo-title h1{
+  /* margin: 10px 0; */
+}

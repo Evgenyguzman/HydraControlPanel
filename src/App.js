@@ -1,28 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+
+import 'font-awesome/css/font-awesome.min.css'
+
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+import Login from './components/pages/login'
+import Panel from './components/pages/panel'
 
 class App extends Component {
   render() {
+
+    const store = this.props.store
+    const WrappedPanel = function(props) {
+      return (<Panel {...props} store={store} />)
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>  
+          <div className="main">
+            <Switch>
+              <Route exact path="/" component={WrappedPanel} />
+              <Route path="/panel" component={WrappedPanel} />
+              <Route path="/login" component={Login} />
+              <Route path="/panel/:id" component={WrappedPanel} />
+              <Redirect from="/admin/panel" to="/panel" />
+              <Route component={WrappedPanel} />
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

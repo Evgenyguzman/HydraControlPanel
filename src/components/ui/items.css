@@ -1,0 +1,280 @@
+.hidden {
+    display: none;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.topbar{
+    height: 60px;
+    background-color: #000;
+    border-bottom: 3px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+.topbar .logo{
+    margin: 5px 50px;
+}
+.topbar .user-panel{
+    display: flex;
+    align-items: center;
+}
+.topbar .quit-btn{
+    margin: 3px 50px;
+}
+
+.things-wrapper{
+    position: relative;
+    width: 100%;
+}
+.things-wrapper .panel-preloader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background-color: rgba(0,0,0,.7);
+}
+.things-wrapper .panel-preloader i{
+    color: white;
+}
+
+.things-list{
+    /* min-height: 100vh; */
+    padding: 0 30px;
+    background-color: #000;
+}
+
+.things-list .thing .thing-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.things-list .thing .thing-title span{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    display: block;
+    background-color: red;
+}
+.things-list .thing.online > .thing-title > span{
+    background-color: green;    
+}
+
+.things-list .thing > .thing-title > button{
+    padding: 3px 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .5s ease;
+    transform: scale(2)
+}
+.things-list .thing .thing-title button i{
+    transition: all .5s ease;
+}
+.things-list .thing .thing-title button.opened i{
+    transform: rotate(180deg);
+}
+.things-list .thing .thing-title button:hover{
+    transform: scale(3)
+}
+
+.things-list .thing > div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.things-list .thing > div > .card{
+    width: 45%;
+    margin: 20px 2.5%;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #34495e;
+}
+.things-list .thing > div > .card.hidden{
+    display: none;
+}
+
+.items{
+    display: flex;
+    flex-wrap: wrap;
+}
+.items .items-title{
+    width: 100%;
+}
+.items .item-wrapper{
+    width: 45%;
+    margin: 5px 2.5%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.items .item-wrapper .item{
+
+}
+.items .item-wrapper .item label.title{
+    padding-bottom: 10px;
+}
+
+.items .item-wrapper .item .text-item input{
+    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+.items .item-wrapper .item.disabled .text-item input{
+    background-color: #111;
+    color: #555;
+}
+.items .item-wrapper .item.disabled .switch-item .slider{
+    background-color: #111;
+}
+.items .item-wrapper .item.disabled .switch-item .slider:before{
+    background-color: #555;
+}
+.items .item-wrapper .item.disabled .integer-item input[type=range]::-moz-range-track{
+    background-color: #000;
+}
+.items .item-wrapper .item > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 8px;
+    height: 7px;
+    border: 1px solid #bdc3c7;
+    background-color: #fff; 
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+input[type=range]::-moz-range-track {
+    border-radius: 8px;
+    height: 7px;
+    background-color: #fff;
+}
+input[type=range]::-moz-range-thumb {
+    background: #000;
+    border: none;
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
+
+.methods .method-wrapper .method .method-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.methods .method-wrapper .method.disabled .method-title h4{
+    color: #888;
+}
+
+.methods .method-wrapper .method .parameters-modal button{
+    /* transition: all .5s ease */
+}
+.methods .method-wrapper .method .parameters-modal button:hover{
+    /* background-color: rgba(255, 255, 255, .5); */
+}
+.methods .method-wrapper .method .parameters-modal button:active{
+    background-color: #fff;
+}
+
+.ReactModalPortal .ReactModal__Content{
+    background-color: #000 !important;
+}
+.ReactModalPortal .ReactModal__Content .manage-panel .react-tabs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.ReactModalPortal .ReactModal__Content .manage-panel .react-tabs ul li{
+    color: #fff;
+}
+.ReactModalPortal .ReactModal__Content .manage-panel .react-tabs ul li.react-tabs__tab--selected{
+    color: #000;
+}
+.ReactModalPortal .ReactModal__Content .manage-panel .react-tabs .react-tabs__tab-panel--selected{
+    width: 100%;
+}
+.ReactModalPortal .ReactModal__Content .manage-panel .react-tabs .close-btn{
+    border: none;
+}
