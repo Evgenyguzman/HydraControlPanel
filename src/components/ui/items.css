@@ -236,6 +236,15 @@ input[type=range]::-moz-range-thumb {
     cursor: pointer;
 }
 
+.input-range__slider-container { 
+    transition: left 0.03s linear !important; 
+    /* transition: none !important; */
+}
+.input-range__track { 
+    transition: left 0.03s linear !important; 
+    /* transition: none !important; */
+}
+
 
 
 .methods .method-wrapper .method .method-title{

@@ -17,7 +17,11 @@ export class Item extends React.Component {
     onChangeValue(data){
         const { thingId } = this.props
         this.setState({value: data.value})
-        changeValue({thingId, ...data})
+        if(typeof this.props.onChangeValue === 'function'){
+            this.props.onChangeValue(data)
+        }else{
+            changeValue({thingId, ...data})
+        }
     }
 
     render() {
@@ -34,13 +38,13 @@ export class Item extends React.Component {
                 item_cmp = <Text item={item} onChangeValue={ this.onChangeValue } />
                 break
             case 'INTEGER':
-                item_cmp = <Integer item={item} onChangeValue={(data) => {this.props.onChangeValue({thingId, ...data})} } />
+                item_cmp = <Integer item={item} onChangeValue={(data) => {this.onChangeValue({thingId, ...data})} } />
                 break
             case 'FLOAT':
-                item_cmp = <Float item={item} onChangeValue={(data) => {this.props.onChangeValue({thingId, ...data})} } />
+                item_cmp = <Float item={item} onChangeValue={(data) => {this.onChangeValue({thingId, ...data})} } />
                 break
             case 'ENUM':
-                item_cmp = <Enum item={item} onChangeValue={(data) => {this.props.onChangeValue({thingId, ...data})} } />
+                item_cmp = <Enum item={item} onChangeValue={(data) => {this.onChangeValue({thingId, ...data})} } />
                 break
             default:
                 item_cmp = <UncaughtItem item={item} />
@@ -147,7 +151,7 @@ export class Float extends React.Component {
         super(props)
         const {item} = this.props
         this.state = {
-            value: parseFloat(item.value)
+            value: parseFloat(item.value) || 0
         }
     }
     render() {
@@ -157,7 +161,6 @@ export class Float extends React.Component {
         const max = (item.constraints.max) ? parseFloat(item.constraints.max) : 100
         const precision = (item.constraints.precision) ? parseInt(item.constraints.precision) : 1
         const step = (item.constraints.step) ? parseFloat(item.constraints.step) : Math.pow(10, -precision)
-
         return (
             <div className="float-item">
                 <label className="title">{ item.name }</label>
@@ -186,8 +189,11 @@ export class Float extends React.Component {
     componentDidUpdate(prevProps, prevState){
 
         const { item } = this.props
-        const value = parseFloat(item.value)
-        if(parseFloat(prevProps.item.value) !== value){
+        const value = parseFloat(item.value) || 0
+        const prevValue = parseFloat(prevProps.item.value) || 0
+        if(prevValue !== value){
+            console.log(prevValue)
+            console.log(value)
             this.setState({ value })
         }
     }

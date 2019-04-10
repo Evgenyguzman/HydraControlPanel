@@ -131,7 +131,7 @@ export class ArgumentedMethod extends React.Component {
                         {
                             method.arguments.map((parameter)=>
                                 <div key={parameter.id}>
-                                    <Item item={ parameter } thingId={ thingId } onChangeValue={(data)=>{this.props.onChangeParameter(data)}} />
+                                    <Item item={ parameter } thingId={ thingId } onChangeValue={(data)=>{console.log(data);this.props.onChangeParameter(data)}} />
                                 </div>
                             
                             )

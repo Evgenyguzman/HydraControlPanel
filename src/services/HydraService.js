@@ -105,6 +105,7 @@ export default class HydraService {
     // ____________________ //
 
 	receive(data) {
+		this.log(data)
 		switch (data.type) {
             case 'state': if (data['thing-connection'] !== undefined && data['user-connection'] !== undefined) this.onHydraState(data['thing-connection'], data['user-connection']); break
 			case 'thing-connected': this.onThingOnline(data); break
@@ -119,7 +120,7 @@ export default class HydraService {
 	}
 
 	log(text) {
-		console.log('Hydra: ' + text)
+		console.log('Hydra: ', text)
 	}
 
 	onDisconnect() {
@@ -163,6 +164,7 @@ export default class HydraService {
 	
 	runMethod(thing, method, parameters){
 		this.log(thing, method, parameters)
+		console.log(JSON.stringify({'action': 'call', 'thing': thing, 'method': method, 'arguments': parameters }))
         this.socket.send(JSON.stringify({'action': 'call', 'thing': thing, 'method': method, 'arguments': parameters }))
     }
 
