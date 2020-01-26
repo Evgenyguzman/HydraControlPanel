@@ -108,7 +108,7 @@ export default class HydraService {
 		if(data.type !== 'item-value') console.log(data)
 		switch (data.type) {
 			case 'state': if (data['thing-connection'] !== undefined && data['user-connection'] !== undefined) this.onHydraState(data['thing-connection'], data['user-connection']); break
-			case 'thing-connected': this.onThingOnline(data); break
+			case 'thing-connected': this.onThingOnline(data.thing); break
 			case 'things': if (data.things !== undefined) this.onThingsData(data.things); break
 			case 'thing-disconnected': if (data.thing !== undefined) this.onThingOffline(data.thing); break
 			case 'item-state': if (this.checkDefined(data, ['thing', 'item', 'state'])) this.onItemStateChanged(data.thing, data.item, data.state); break
