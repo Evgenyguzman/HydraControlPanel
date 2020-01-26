@@ -14,7 +14,7 @@ export default class HydraService {
 		this.state = 'connecting'
 		this.socket = new WebSocket(address)
 	    this.socket.addEventListener('message', (event) => {
-	        this.log('received: ' + event.data)
+	        // this.log('received: ' + event.data)
 	        let data = JSON.parse(event.data)
 	        this.receive(data)
             if (this.state === 'getToken' && data.type === 'result') {
@@ -105,9 +105,9 @@ export default class HydraService {
     // ____________________ //
 
 	receive(data) {
-		this.log(data)
+		if(data.type !== 'item-value') console.log(data)
 		switch (data.type) {
-            case 'state': if (data['thing-connection'] !== undefined && data['user-connection'] !== undefined) this.onHydraState(data['thing-connection'], data['user-connection']); break
+			case 'state': if (data['thing-connection'] !== undefined && data['user-connection'] !== undefined) this.onHydraState(data['thing-connection'], data['user-connection']); break
 			case 'thing-connected': this.onThingOnline(data); break
 			case 'things': if (data.things !== undefined) this.onThingsData(data.things); break
 			case 'thing-disconnected': if (data.thing !== undefined) this.onThingOffline(data.thing); break
@@ -127,8 +127,8 @@ export default class HydraService {
 		this.log('suddenly disconnected')
 	}
 
-    onHydraState(thingConnection, userConnection) {
-    }
+	onHydraState(thingConnection, userConnection) {
+	}
 
 	onThingsData(things) {
     }
@@ -155,11 +155,11 @@ export default class HydraService {
 		for (let i = 0; i < fields.length; i++)
 			if (object[fields[i]] === undefined) return false
 		return true
-    }
+	}
     
-    changeValue(thing, item, value){
+	changeValue(thing, item, value){
 		this.log(thing, item, value)
-        this.socket.send(JSON.stringify({'action': 'set', 'thing': thing, 'item': item, 'value': value}))
+		this.socket.send(JSON.stringify({'action': 'set', 'thing': thing, 'item': item, 'value': value}))
 	}
 	
 	runMethod(thing, method, parameters){

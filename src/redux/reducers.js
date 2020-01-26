@@ -20,14 +20,25 @@ const things = (state = {}, action) => {
             }
         case C.THING_ONLINE:
             {
-                let flag = false
-                new_state.forEach((thing, i) => {
+                // let flag = false
+                // new_state.forEach((thing, i) => {
+                //     if(thing.id === action.thing.id){
+                //         new_state[i] = action.thing
+                //         new_state[i].online = true
+                //         flag = true
+                //     }
+                // })
+
+                let flag = new_state.reduce((sum, thing, i)=>{
                     if(thing.id === action.thing.id){
                         new_state[i] = action.thing
                         new_state[i].online = true
-                        flag = true
+                        return true
+                    }else{
+                        return sum
                     }
-                })
+                }, false)
+
                 if(!flag){
                     let {thing} = action
                     thing.online = true

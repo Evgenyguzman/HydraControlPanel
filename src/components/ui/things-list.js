@@ -42,10 +42,8 @@ class ThingsList extends React.Component {
                     {
                         things.map((thing, i) => {
                             
-                            if(!thing.parents){
-                                return ''
-                            }
-                            if(thing.parents.indexOf(parentId) !== -1 || (thing.parents.length === 0 && parentId === "")){
+                            thing.parents = thing.parents ? thing.parents : []
+                            if(thing.parents && thing.parents.indexOf(parentId) !== -1 || (thing.parents.length === 0 && parentId === "")){
                                const isOpened = (openedThings.indexOf(thing.id) !== -1) && thing.online
                                 return(
                                     <div key={thing.id} className={"thing " + (thing.online ? 'online' : '')}>
@@ -67,7 +65,7 @@ class ThingsList extends React.Component {
                                     </div>
                                 ) 
                             }else{
-                                return ''
+                                return null
                             }  
                         })
                     }
